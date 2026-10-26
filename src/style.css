@@ -18,3 +18,56 @@
     @media(max-width:680px){.arrow svg{width:16px;height:16px}.fab:not([hidden]){display:grid;place-items:center}}
     html{scrollbar-gutter:stable}.page-head.period{min-height:136px}.page-head.period .eyebrow{font-size:14px;line-height:20px}.page-head.period h1{font-size:32px;line-height:40px;font-weight:700;letter-spacing:0;margin:5px 0 4px;font-variant-numeric:tabular-nums}.page-head.period .subline{font-size:16px;line-height:24px}.weekday-row,.weekday-row.week-head{height:50px;margin:26px 0 0;border:1px solid var(--line);border-bottom:0;border-radius:16px 16px 0 0;overflow:hidden;align-items:stretch}.weekday-row>div{display:grid;place-items:center}.week-day{height:100%;padding:0 3px}.calendar,.calendar.week-calendar{border-top:0;border-radius:0 0 16px 16px}
     @media(max-width:680px){.page-head.period{display:block;min-height:0}.page-head.period h1{font-size:23px;line-height:30px;white-space:nowrap}.page-head.period .subline{font-size:14px;line-height:20px}.page-head.period .period-tools{justify-content:flex-end;margin-top:12px}.weekday-row,.weekday-row.week-head{height:44px}}
+
+/* Arco controls inside the existing Time layout */
+.arco-nav .arco-tabs-content{display:none}
+.arco-nav .arco-tabs-nav::before{display:none}
+.arco-nav .arco-tabs-nav-type-capsule{border-radius:999px;background:#f3f5f8;padding:4px}
+.arco-nav .arco-tabs-tab{min-width:88px;justify-content:center;border-radius:999px;margin:0!important;font-size:14px}
+.arco-nav .arco-tabs-tab-active{background:#3d71ed!important;color:#fff!important}
+.arco-btn.swatch{width:34px;height:34px;min-width:34px;padding:0;background:var(--swatch)!important;border:2px solid transparent!important;box-shadow:none}
+.arco-btn.swatch.selected{outline:2px solid var(--ink);outline-offset:2px}
+.arco-btn.swatch:hover{filter:brightness(.97)}
+.arco-btn.check{width:23px;height:23px;min-width:23px;padding:0;border:1.6px solid #9daaa3;background:#fff;color:#fff}
+.arco-btn.check.done{border-color:var(--blue);background:var(--blue)}
+.arco-btn.check svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.arco-btn.item-title{display:inline;min-height:0;height:auto;padding:0;color:var(--ink);line-height:1.4;font-size:18px;font-weight:600;white-space:normal;vertical-align:baseline}
+.arco-btn.item-title:hover{background:none;color:var(--blue)}
+.item.done .arco-btn.item-title{color:var(--muted)}
+.arco-tag.status-chip{margin-left:10px;vertical-align:middle;border-radius:999px}
+.arco-btn.section-add{margin-left:auto;border-radius:999px}
+.arco-btn.data-button{position:absolute;right:24px;color:var(--muted)}
+.arco-btn.arrow{height:34px;width:34px;min-width:34px;padding:0}
+.arco-btn.now-btn{color:var(--blue)}
+.arco-btn.week-day{border:0;border-right:1px solid var(--line);border-radius:0;background:#fff;height:100%;padding:0 3px}
+.arco-btn.week-day.selected{background:#f1f7ff}
+.arco-btn.week-day.today{color:var(--blue)}
+.arco-btn.week-day:last-child{border-right:0}
+.arco-btn.fab{width:56px;height:56px;padding:0;border-radius:50%;background:var(--blue);box-shadow:0 8px 22px #3d71ed44}
+.arco-btn.fab svg{width:25px;height:25px}
+.time-modal .arco-modal-body{max-height:calc(100vh - 170px);overflow-y:auto;padding:20px 24px}
+.time-modal .arco-form-item{margin-bottom:16px}
+.time-modal .arco-form-item-label{font-size:13px;font-weight:600}
+.time-modal .arco-picker,.time-modal .arco-select{width:100%}
+.time-modal .date-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.time-modal .mood-color-control{width:100%}
+.time-modal .swatches,.time-modal .form-swatches{display:flex;gap:10px;flex-wrap:wrap}
+.time-modal .picker-row{margin-top:17px}
+.time-modal .data-actions{display:grid;gap:12px}
+.time-modal .arco-btn.data-action{height:auto;min-height:64px;justify-content:flex-start;text-align:left;padding:12px 16px}
+.time-modal .data-action span{display:block;width:100%;font-weight:600}
+.time-modal .data-action small{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:4px}
+.time-modal .delete-action{margin-right:auto}
+.time-modal .arco-modal-footer{display:flex;gap:8px;align-items:center}
+@media(max-width:680px){.arco-nav .arco-tabs-tab{min-width:70px}.arco-btn.item-title{font-size:16px}.arco-btn.data-button{right:7px;top:72px}.time-modal .date-fields{grid-template-columns:1fr}.time-modal .arco-modal-body{max-height:calc(100vh - 150px)}}
+.arco-btn.settings-button{height:38px;width:38px;padding:6px;border-radius:50%;color:#111}
+.arco-btn.mood-text{height:auto;min-height:0;padding:3px 4px;color:#111;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:transparent}
+.arco-btn.day{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;min-width:0;width:auto;height:auto;min-height:0;border:0;border-right:1px solid var(--line);border-radius:0;background:#fff;text-align:left;padding:11px 8px;color:var(--ink);position:relative}
+.arco-btn.day:nth-child(7){border-right:0}
+.arco-btn.day.outside{background:#fafbfa;color:#b0b9b3}
+.arco-btn.day.selected{background:#f1f7ff}
+.arco-btn.day:hover{filter:brightness(.98)}
+.arco-btn.bar{position:absolute;display:block;height:23px;min-height:0;min-width:0;border:0;border-radius:7px;background:var(--bar);font-size:11px;font-weight:600;text-align:left;padding:0 7px;line-height:23px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:2}
+.arco-btn.bar:hover{background:var(--bar);filter:brightness(.94)}
+.time-modal .arco-modal-footer{justify-content:flex-end}
+@media(max-width:680px){.arco-btn.day{padding:8px 3px}.arco-btn.bar{font-size:10px;padding:0 4px}}

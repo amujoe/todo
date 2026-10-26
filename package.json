@@ -9,6 +9,7 @@
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {
+    "@arco-design/web-vue": "^2.59.0",
     "vue": "^3.5.0"
   },
   "devDependencies": {

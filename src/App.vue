@@ -1,5 +1,6 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { Message } from '@arco-design/web-vue'
 import { addDays, localKey, shiftMonth } from './date.js'
 import { createStore, DEFAULT_MOOD } from './store.js'
 import MoodHeader from './components/MoodHeader.vue'
@@ -13,9 +14,11 @@ import MonthView from './views/MonthView.vue'
 
 const today = ref(localKey(new Date()))
 const view = ref('today'), cursor = ref(today.value), selectedDay = ref(today.value)
-const toastText = ref(''), moodDialog = ref(null), entryDialog = ref(null), dataDialog = ref(null)
-let toastTimer
-function toast(message) { toastText.value = message; clearTimeout(toastTimer); toastTimer = setTimeout(() => { toastText.value = '' }, 3000) }
+const moodDialog = ref(null), entryDialog = ref(null), dataDialog = ref(null)
+function toast(message) {
+  if (message.includes('失败') || message.includes('无法')) Message.error(message)
+  else Message.success(message)
+}
 const { state, persist, replace } = createStore(toast)
 const mood = computed(() => state.moods[today.value] || { text: '今天不加班', color: DEFAULT_MOOD })
 
@@ -39,7 +42,7 @@ function checkDate() {
   if (now !== today.value) { today.value = now; cursor.value = now; selectedDay.value = now }
 }
 onMounted(() => document.addEventListener('visibilitychange', checkDate))
-onUnmounted(() => { document.removeEventListener('visibilitychange', checkDate); clearTimeout(toastTimer) })
+onUnmounted(() => document.removeEventListener('visibilitychange', checkDate))
 </script>
 
 <template>
@@ -51,8 +54,7 @@ onUnmounted(() => { document.removeEventListener('visibilitychange', checkDate);
     <MonthView v-else :entries="state.entries" :today="today" :cursor="cursor" :selected-day="selectedDay" @move="movePeriod" @reset="resetPeriod" @select="selectedDay = $event" @add="openEntry" @edit="editEntry" @toggle="toggleEntry" />
     <div class="footer">Time · 让时间变得清楚一点</div>
   </main>
-  <button v-if="view !== 'today'" class="fab" type="button" aria-label="新增事项" @click="openEntry({ date: selectedDay })"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
-  <div v-if="toastText" class="toast" role="status">{{ toastText }}</div>
+  <a-button v-if="view !== 'today'" class="fab" type="primary" shape="circle" aria-label="新增事项" @click="openEntry({ date: selectedDay })"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></a-button>
   <MoodDialog ref="moodDialog" @save="saveMood" @toast="toast" />
   <EntryDialog ref="entryDialog" @save="saveEntry" @delete="deleteEntry" />
   <DataDialog ref="dataDialog" :data="state" :today="today" @import="importData" @toast="toast" />

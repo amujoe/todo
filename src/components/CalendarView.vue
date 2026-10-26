@@ -18,14 +18,14 @@ const selectedEntries = computed(() => props.entries.filter(e => activeOn(e, pro
   <div class="page-head period">
     <div><div class="eyebrow">{{ isWeek ? '本周视图' : '本月视图' }}</div><h1>{{ title }}</h1><div class="subline">跨天事项连成一条；点击日期可查看和添加。</div></div>
     <div class="period-tools">
-      <button class="arrow" type="button" aria-label="上一段时间" @click="emit('move', -1)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6L9 12L15 18"/></svg></button>
-      <button class="arrow" type="button" aria-label="下一段时间" @click="emit('move', 1)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6L15 12L9 18"/></svg></button>
-      <button class="now-btn" type="button" @click="emit('reset')">回到今天</button>
+      <a-button class="arrow" shape="circle" aria-label="上一段时间" @click="emit('move', -1)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6L9 12L15 18"/></svg></a-button>
+      <a-button class="arrow" shape="circle" aria-label="下一段时间" @click="emit('move', 1)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6L15 12L9 18"/></svg></a-button>
+      <a-button class="now-btn" type="text" @click="emit('reset')">回到今天</a-button>
     </div>
   </div>
   <div class="weekday-row" :class="{ 'week-head': isWeek }">
     <template v-if="isWeek">
-      <button v-for="(name, i) in ['一', '二', '三', '四', '五', '六', '日']" :key="i" class="week-day" :class="{ today: addDays(first, i) === today, selected: addDays(first, i) === selectedDay }" type="button" @click="emit('select', addDays(first, i))"><span class="week-day-name">周{{ name }}</span><span class="week-day-date">{{ dateLabel(addDays(first, i)) }}</span></button>
+      <a-button v-for="(name, i) in ['一', '二', '三', '四', '五', '六', '日']" :key="i" class="week-day" :class="{ today: addDays(first, i) === today, selected: addDays(first, i) === selectedDay }" @click="emit('select', addDays(first, i))"><span class="week-day-name">周{{ name }}</span><span class="week-day-date">{{ dateLabel(addDays(first, i)) }}</span></a-button>
     </template>
     <div v-for="name in ['一', '二', '三', '四', '五', '六', '日']" v-else :key="name">{{ name }}</div>
   </div>
@@ -37,7 +37,7 @@ const selectedEntries = computed(() => props.entries.filter(e => activeOn(e, pro
     <h2>{{ formatDate(selectedDay, { month: 'long', day: 'numeric', weekday: 'long' }) }}</h2>
     <div class="list">
       <EntryCard v-for="entry in selectedEntries" :key="entry.id" :entry="entry" :today="today" @edit="emit('edit', $event)" @toggle="emit('toggle', $event)" />
-      <div v-if="!selectedEntries.length" class="empty">这一天没有事项。<button type="button" @click="emit('add', { date: selectedDay, kind: 'task' })">新增事项</button></div>
+      <div v-if="!selectedEntries.length" class="empty">这一天没有事项。<a-button type="text" size="small" @click="emit('add', { date: selectedDay, kind: 'task' })">新增事项</a-button></div>
     </div>
   </div>
 </template>

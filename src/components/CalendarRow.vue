@@ -22,9 +22,9 @@ function barStyle(entry, lane) {
 
 <template>
   <div class="cal-row" :style="{ '--row-height': rowHeight }">
-    <button v-for="i in 7" :key="i" class="day" :class="{ outside: monthMode && addDays(start, i - 1).slice(0, 7) !== cursor.slice(0, 7), today: addDays(start, i - 1) === today, selected: addDays(start, i - 1) === selectedDay }" type="button" :aria-label="formatDate(addDays(start, i - 1), { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })" @click="emit('select', addDays(start, i - 1))">
+    <a-button v-for="i in 7" :key="i" class="day" :class="{ outside: monthMode && addDays(start, i - 1).slice(0, 7) !== cursor.slice(0, 7), today: addDays(start, i - 1) === today, selected: addDays(start, i - 1) === selectedDay }" :aria-label="formatDate(addDays(start, i - 1), { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })" @click="emit('select', addDays(start, i - 1))">
       <span v-if="monthMode" class="day-number">{{ parseDay(addDays(start, i - 1)).getDate() }}</span>
-    </button>
-    <button v-for="(entry, lane) in visible" :key="entry.id" class="bar" type="button" :style="barStyle(entry, lane)" :title="`${entry.title} · ${entry.start} — ${entry.end}`" @click="emit('edit', entry)">{{ entry.start < start ? '← ' : '' }}{{ entry.done ? '✓ ' : '' }}{{ entry.title }}{{ entry.end > end ? ' →' : '' }}</button>
+    </a-button>
+    <a-button v-for="(entry, lane) in visible" :key="entry.id" class="bar" :style="barStyle(entry, lane)" :title="`${entry.title} · ${entry.start} — ${entry.end}`" @click="emit('edit', entry)">{{ entry.start < start ? '← ' : '' }}{{ entry.done ? '✓ ' : '' }}{{ entry.title }}{{ entry.end > end ? ' →' : '' }}</a-button>
   </div>
 </template>
